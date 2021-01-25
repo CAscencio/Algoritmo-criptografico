@@ -1,27 +1,32 @@
 package com.criptografia.dev;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 public class Demo {
     public static void main(String[] args) {
 
-        if(args.length == 0){
-
-            String mensaje = "demito";
-
-            char caracter;
-            int codigoASCII;
-            int int1, int2, int3, int4;
-            String binario;
-            String encryptado;
-            String key;
-
-            for (int i = 0; i < mensaje.length(); i++){
-                caracter = mensaje.charAt(i);
-                codigoASCII = caracter;
-                System.out.println(codigoASCII);
-            }
+        String cadenaDeTexto = "password14";
+        String cadenaEncriptada = "";
+        try {
+            System.out.println("Texto original -> "+cadenaDeTexto);
+            cadenaEncriptada = encriptar(cadenaDeTexto);
+            System.out.println("Texto encriptada -> "+cadenaEncriptada);
+            String cadenaDesencriptada = desencriptar(cadenaEncriptada);
+            System.out.println("Texto desencriptada -> "+cadenaDesencriptada);
+        } catch (UnsupportedEncodingException uee) {
+            System.out.println("Ups!! > "+ uee);
         }
 
 
+    }
+
+
+    private static String encriptar(String s) throws UnsupportedEncodingException {
+        return Base64.getEncoder().encodeToString(s.getBytes("utf-8"));
+    }
+
+    private static String desencriptar(String s) throws UnsupportedEncodingException{
+        byte[] decode = Base64.getDecoder().decode(s.getBytes());
+        return new String(decode, "utf-8");
     }
 }

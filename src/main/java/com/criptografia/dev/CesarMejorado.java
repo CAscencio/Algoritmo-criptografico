@@ -1,6 +1,6 @@
 package com.criptografia.dev;
 
-public class Cesar {
+public class CesarMejorado {
 
     public static void main(String[] args) {
 
@@ -32,13 +32,13 @@ public class Cesar {
 
             if (Character.isUpperCase(mensaje.charAt(i))) {
 
-                for (int e = 0; e < arrAbcMay.length; e++) {//COMPRUEBO SI ES MAYUSCULA
+                for (int e = 0; e < arrAbcMay.length; e++) {                      //COMPRUEBO SI ES MAYUSCULA
                     if (arrAbcMay[e].equals(mensaje.charAt(i) + "")) {
                         mensajeIntermedio = mensajeIntermedio + arrAbcMayCes[e];
                     }
 
                 }
-            } else if (Character.isLowerCase(mensaje.charAt(i))) {//COMPRUEBO SI ES MINUSCULA
+            } else if (Character.isLowerCase(mensaje.charAt(i))) {                //COMPRUEBO SI ES MINUSCULA
                 for (int e = 0; e < arrAbcMin.length; e++) {
                     if (arrAbcMin[e].equals(mensaje.charAt(i) + "")) {
                         mensajeIntermedio = mensajeIntermedio + arrAbcMinCes[e];
@@ -46,7 +46,7 @@ public class Cesar {
 
                 }
 
-            } else if (Character.isDigit(mensaje.charAt(i))) {//COMPRUEBO SI ES UN NUMERO
+            } else if (Character.isDigit(mensaje.charAt(i))) {                    //COMPRUEBO SI ES UN NUMERO
                 for (int e = 0; e < arrNumCes.length; e++) {
                     if (arrNum[e].equals(mensaje.charAt(i) + "")) {
                         mensajeIntermedio = mensajeIntermedio + arrNumCes[e];
@@ -59,6 +59,7 @@ public class Cesar {
             }
 
         }
+
         System.out.println(mensajeIntermedio);
 
     }
