@@ -2,68 +2,34 @@ package com.criptografia.dev;
 
 public class CesarMejorado {
 
-    public static void main(String[] args) {
+    public String cifrarCesar(String mensaje) {
 
-        String abcMin = "abcdefghijklmnñopqrstuwxyz";
-        String abcMay = new String(abcMin);
-        String numeros = "0123456789";
-        abcMay = abcMay.toUpperCase();
+        //Texto a salir (cfrado)
+        String cipher = "";
+        String cipherReverse = "";
+        //Posiciones a adelantar
+        int adelantar = 3;
 
-        String[] arrAbcMin = abcMin.split("");
-        String[] arrAbcMay = abcMay.split("");
-        String[] arrNum = numeros.split("");
+        //Convertimos el mansaje en un array de caracteres
+        char[] letras = mensaje.toCharArray();
 
-        //VARIABLES CESAR
-        String abcMinCes = "cdefghijklmnñopqrstuwxyzab";
-        String abcMayCes = new String(abcMinCes);
-        String numerosCes = "2345678901";
-        abcMayCes = abcMayCes.toUpperCase();
+        //Vamos por cada caracter sumandole 3
+        for (int i = 0; i < letras.length; i++) {
 
-        String[] arrAbcMinCes = abcMinCes.split("");
-        String[] arrAbcMayCes = abcMayCes.split("");
-        String[] arrNumCes = numerosCes.split("");
+            // de esta manera obtenemos el codigo ascii del caracter  ((int) letras[i])
+            // luego a ese numero le sumamos 3 ( ((int) letras[i])+ adelantar)  <- quedaria asi
+            // y luego convertimos ese numero en la letra a la que hace
+            // referencia en el codigo ascii solo casteando el numero a (char)
 
-        String mensaje = "abc";
-        String letraIntermedio = "";
-        String mensajeIntermedio = "";
-
-
-        for (int i = 0; i < mensaje.length(); i++) {
-
-            if (Character.isUpperCase(mensaje.charAt(i))) {
-
-                for (int e = 0; e < arrAbcMay.length; e++) {                      //COMPRUEBO SI ES MAYUSCULA
-                    if (arrAbcMay[e].equals(mensaje.charAt(i) + "")) {
-                        mensajeIntermedio = mensajeIntermedio + arrAbcMayCes[e];
-                    }
-
-                }
-            } else if (Character.isLowerCase(mensaje.charAt(i))) {                //COMPRUEBO SI ES MINUSCULA
-                for (int e = 0; e < arrAbcMin.length; e++) {
-                    if (arrAbcMin[e].equals(mensaje.charAt(i) + "")) {
-                        mensajeIntermedio = mensajeIntermedio + arrAbcMinCes[e];
-                    }
-
-                }
-
-            } else if (Character.isDigit(mensaje.charAt(i))) {                    //COMPRUEBO SI ES UN NUMERO
-                for (int e = 0; e < arrNumCes.length; e++) {
-                    if (arrNum[e].equals(mensaje.charAt(i) + "")) {
-                        mensajeIntermedio = mensajeIntermedio + arrNumCes[e];
-                    }
-
-                }
-
-            } else {//EN CUALQUIER OTRO CASO CONCATENA CARACTER
-                mensajeIntermedio = mensajeIntermedio + mensaje.charAt(i) + "";
-            }
-
+            cipher += (char) (((int) letras[i]) + adelantar);
         }
 
-        System.out.println(mensajeIntermedio);
+        for (int j = cipher.length() - 1; j >= 0; j--) {
+            // Y vamos concatenando cada carácter a la nueva cadena
+            cipherReverse += cipher.charAt(j);
+        }
 
+        //Texto cifrado reverse
+        return cipherReverse;
     }
-
 }
-
-
